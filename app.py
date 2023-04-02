@@ -9,7 +9,7 @@ css_bundle = Bundle('css/style.css', output='gen/style.css', filters='cssmin')
 js_bundle = Bundle('js/main.js', output='gen/main.js', filters='jsmin')
 
 
-openai.api_key = "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"
+openai.api_key = ""
 model_engine = "text-davinci-002"
 
 assets.register('css_all', css_bundle)
