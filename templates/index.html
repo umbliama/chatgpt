@@ -1,0 +1,66 @@
+
+    {% include 'header.html' %}
+
+    <div class="container">
+    <h1 class="header_heading">Astra GPT</h1>
+        
+    <div class="container-inner">
+        <div class="columns">
+            <!-- Column 1 - Image -->
+            <div class="column">
+                <figure class="image">
+                    <img class="spin" src="{{url_for('static', filename='img/astra.png')}}" alt="Horoscope">
+                </figure>
+            </div>
+            <!-- Column 2 - Select and Result Field -->
+            <div class="column">
+                <form class="horoscope-form" action="/submit_form" id="horoscope-js" method="POST">
+                    <div class="field">
+                        <label class="horoscope-label">Select your zodiac sign:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="zodiac_sign" id="zodiac">
+                                    <option value="" disabled selected>Choose your zodiac sign</option>
+                                    {% for sign in zodiac_signs %}
+                                      <option value="{{ sign }}">{{ sign }}</option>
+                                    {% endfor %}
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="checkbox" id="translate_checkbox" name="translation">
+                    <label class="horoscope-label" for="translation">Translation</label>
+                    <div class="field translate_field">
+                        <label class="horoscope-label">Translate to:</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="translate_to" id="translate_to">
+                                    <option value="nothing"><img src="{{url_for('static', filename='img/id.png')}}" alt="Indonesian"></option>
+                                    <option value="ru"><img src="{{url_for('static', filename='img/id.png')}}" alt="Indonesian"> Russian</option>
+                                    <option value="es"><img src="{{url_for('static', filename='img/es.png')}}" alt="Spanish"> Spanish</option>
+                                    <option value="fr"><img src="{{url_for('static', filename='img/fr.png')}}" alt="French"> French</option>
+                                    <option value="ar"><img src="{{url_for('static', filename='img/ar.png')}}" alt="Arabic"> Arabic</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="zodiac_hidden" id="zodiac-hidden">
+                    <div class="field">
+                        <label class="horoscope-label">Your horoscope:</label>
+                        <div class="control">
+                            <div class="response" readonly>{{ horoscope }}</div>
+                        </div>
+                    </div>
+                    <!-- add select that will represent different languages with flags to translate horoscope -->
+                    <div class="field">
+                        <div class="control">
+                            <button onclick="horoscope()" class="button-main astra-btn">Generate</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
